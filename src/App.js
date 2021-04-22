@@ -1,6 +1,7 @@
 import './App.css';
 import mqtt from "mqtt";
 import React from 'react';
+import Button from "./entity/button/Button";
 
 class App extends React.Component {
 
@@ -25,6 +26,7 @@ class App extends React.Component {
             </input>
           </div>
           <p>{this.state.error}</p>
+          <Button captors={this.state.captors}/>
         </div>
       </div>
     );

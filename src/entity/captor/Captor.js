@@ -7,12 +7,12 @@ class Captor extends React.Component {
     }
 
     render() {
-        const type = this.props.sensor.type;
+        const type = this.props.captor.type;
         return (
             <div>
-                <h2>{this.props.sensor.name}</h2>
+                <h2>{this.props.captor.name}</h2>
                 <h4><i> Valeur actuelle : </i></h4>
-                <h1>{this.affichage(this.props.sensor.values[0], type)}</h1>
+                <h1>{this.affichage(this.props.captor.values[0], type)}</h1>
 
                 <h4>Historique : </h4>
                 <div>
@@ -27,9 +27,9 @@ class Captor extends React.Component {
     }
 
     renderHistorique() {
-        if (this.props.sensor.values.length !== 0) {
-            const type = this.props.sensor.type;
-            return this.props.sensor.values.map((value) => (
+        if (this.props.captor.values.length !== 0) {
+            const type = this.props.captor.type;
+            return this.props.captor.values.map((value) => (
                 <tr>
                     <td>{this.affichage(value, type)}</td>
                 </tr>
