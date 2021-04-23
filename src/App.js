@@ -2,6 +2,8 @@ import './App.css';
 import mqtt from "mqtt";
 import React from 'react';
 import Button from "./entity/button/Button";
+import CGC from "./entity/CssGridContainer.module.css";
+import styleHeader from "./entity/Header.module.css";
 
 class App extends React.Component {
 
@@ -12,23 +14,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <div>
+      <>
+        <div class={CGC.container}>
+          <div class={CGC.header}>
             <h2><label htmlFor="first-name">URL du Brocker</label></h2>
-          </div>
-          <div>
             <input
               type="text" id="server"
+              class={styleHeader.input}
               placeholder="Enter your server URI here"
               onChange={this.urlListener.bind(this)}
               value={this.state.url}>
             </input>
+            <p>{this.state.error}</p>
           </div>
-          <p>{this.state.error}</p>
           <Button captors={this.state.captors}/>
         </div>
-      </div>
+      </>
     );
   }
 

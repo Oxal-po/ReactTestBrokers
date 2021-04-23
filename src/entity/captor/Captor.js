@@ -1,4 +1,5 @@
 import React from 'react';
+import styleCaptors from './Captor.module.css'
 
 class Captor extends React.Component {
 
@@ -16,7 +17,7 @@ class Captor extends React.Component {
 
                 <h4>Historique : </h4>
                 <div>
-                    <table>
+                    <table class={styleCaptors.table}>
                         <tbody>
                             {this.renderHistorique()}
                         </tbody>
@@ -31,7 +32,9 @@ class Captor extends React.Component {
             const type = this.props.captor.type;
             return this.props.captor.values.map((value) => (
                 <tr>
-                    <td>{this.affichage(value, type)}</td>
+                    <td>
+                        {this.affichage(value, type)}
+                    </td>
                 </tr>
             ));
         } else {
