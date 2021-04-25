@@ -12,7 +12,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "uuidv4": "^6.2.7",
-    "web-vitals": "^1.1.1"
+    "web-vitals": "^1.1.1",
+    "jest-dom": "^4.0.0",
+    "react-test-render": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
