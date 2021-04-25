@@ -3,6 +3,7 @@ import Captor from "./../captor/Captor";
 import { Link, Route } from "react-router-dom";
 import CGC from "../CssGridContainer.module.css";
 import styleButton from "./Button.module.css";
+import { uuid } from "uuidv4"
 
 class Button extends React.Component {
 
@@ -27,17 +28,17 @@ class Button extends React.Component {
 
     buttons() {
         const buttons = [];
-        if (this.props.captors) {
+        if (this.props.captors && Array.isArray(this.props.captors)) {
             for (const captor of this.props.captors) { // TODO add class 'active' when onClick
                 const className = captor.id === this.state.pushedButton ? styleButton.buttonActive : styleButton.button;
                 buttons.push(
-                    <div>
+                    <>
                         <Link to={this.route(captor.name)}>
                             <button id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
                                 <h3>{captor.name}</h3>
                             </button>
                         </Link>
-                    </div>
+                    </>
                 );
             }
         }
@@ -51,10 +52,10 @@ class Button extends React.Component {
     render() {
         return (
             <>
-                <div class={CGC.side}>
+                <div className={CGC.side}>
                     {this.buttons()}
                 </div>
-                <div class={CGC.main}>
+                <div className={CGC.main}>
                     <Route path={this.route(this.state.captor.name)}>
                         <Captor captor={this.state.captor} />
                     </Route>

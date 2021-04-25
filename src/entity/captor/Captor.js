@@ -8,7 +8,7 @@ class Captor extends React.Component {
 
     render() {
         let type = "";
-        let name = "basicName";
+        let name = "Veuillez Cliquez sur un bouton";
         let values = [0];
 
         if(this.props.captor){
@@ -18,7 +18,7 @@ class Captor extends React.Component {
             if(typeof this.props.captor.name === "string"){
                 name = this.props.captor.name;
             }
-            if(typeof this.props.captor.values === "array"){
+            if(Array.isArray(this.props.captor.values)){
                 values = this.props.captor.values;
             }
         }
@@ -26,7 +26,7 @@ class Captor extends React.Component {
             <div>
                 <h2>{name}</h2>
                 <h4><i> Valeur actuelle : </i></h4>
-                <h1>{this.affichage(values, type)}</h1>
+                <h1>{this.affichage(values[0], type)}</h1>
 
                 <h4>Historique : </h4>
                 <div>

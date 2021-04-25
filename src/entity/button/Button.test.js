@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from "./Button";
-import BrowserRouter from "react-router-dom";
-
-import {
-    render
-} from '@testing-library/react';
+import {BrowserRouter, Route} from "react-router-dom";
 
 describe('render sans crash', () => {
     it("Avec un capteur", () => {
