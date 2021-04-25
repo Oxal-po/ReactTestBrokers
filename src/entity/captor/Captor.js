@@ -18,7 +18,7 @@ class Captor extends React.Component {
             if(typeof this.props.captor.name === "string"){
                 name = this.props.captor.name;
             }
-            if(typeof this.props.captor.values === "array"){
+            if(Array.isArray(this.props.captor.values)){
                 values = this.props.captor.values;
             }
         }
