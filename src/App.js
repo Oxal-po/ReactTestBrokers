@@ -15,12 +15,12 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <div class={CGC.container}>
-          <div class={CGC.header}>
+        <div className={CGC.container}>
+          <div className={CGC.header}>
             <h2><label htmlFor="first-name">URL du Brocker</label></h2>
             <input
               type="text" id="server"
-              class={styleHeader.input}
+              className={styleHeader.input}
               placeholder="Enter your server URI here"
               onChange={this.urlListener.bind(this)}
               value={this.state.url}>
