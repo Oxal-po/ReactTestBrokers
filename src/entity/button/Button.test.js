@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from "./button";
+import Button from "./Button";
 import { BrowserRouter, Route } from "react-router-dom";
 
 it ("render sans crash", function () {
