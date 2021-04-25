@@ -3,7 +3,7 @@ import Captor from "./../captor/Captor";
 import { Link, Route } from "react-router-dom";
 import CGC from "../CssGridContainer.module.css";
 import styleButton from "./Button.module.css";
-import { uuid } from "uuidv4"
+import { uuid } from "uuidv4";
 
 class Button extends React.Component {
 
@@ -34,7 +34,7 @@ class Button extends React.Component {
                 buttons.push(
                     <>
                         <Link to={this.route(captor.name)}>
-                            <button id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
+                            <button key={uuid()} id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
                                 <h3>{captor.name}</h3>
                             </button>
                         </Link>
