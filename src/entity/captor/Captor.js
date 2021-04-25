@@ -1,10 +1,13 @@
 import React from 'react';
 import styleCaptors from './Captor.module.css'
+import { uuid } from "uuidv4"
 
 class Captor extends React.Component {
 
+
+
     render() {
-        const type = this.props.captor.type;
+        const type = this.props.captor.type ? this.props.captor.type : "";
         return (
             <div>
                 <h2>{this.props.captor.name}</h2>
@@ -13,8 +16,8 @@ class Captor extends React.Component {
 
                 <h4>Historique : </h4>
                 <div>
-                    <table class={styleCaptors.table}>
-                        <tbody>
+                    <table className={styleCaptors.table}>
+                        <tbody key={uuid()}>
                             {this.renderHistorique()}
                         </tbody>
                     </table>
@@ -27,8 +30,8 @@ class Captor extends React.Component {
         if (this.props.captor.values.length !== 0) {
             const type = this.props.captor.type;
             return this.props.captor.values.map((value) => (
-                <tr>
-                    <td>
+                <tr key={uuid()}>
+                    <td key={uuid()}>
                         {this.affichage(value, type)}
                     </td>
                 </tr>
