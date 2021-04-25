@@ -27,7 +27,7 @@ class App extends React.Component {
             </input>
             <p>{this.state.error}</p>
           </div>
-          <Button captors={this.state.captors}/>
+          <Button captors={this.state.captors} />
         </div>
       </>
     );

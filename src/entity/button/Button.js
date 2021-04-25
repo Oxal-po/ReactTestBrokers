@@ -1,42 +1,45 @@
 import React from "react";
 import Captor from "./../captor/Captor";
-import {Link, Route} from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import CGC from "../CssGridContainer.module.css";
 import styleButton from "./Button.module.css";
-import PropTypes from "prop-types";
 
-
-export default class Button extends React.Component {
+class Button extends React.Component {
 
     constructor(props) {
         super(props);
         this.captors = this.props.captors;
         this.state = {
             captors: [],
-            captor: { values: [] }
+            captor: { values: [] },
+            pushedButton: 0
         };
     }
 
 
     handleClick(captor) {
         this.setState({
-            captor: captor
+            captor: captor,
+            pushedButton: captor.id
         });
         this.url = this.route(captor.name);
     }
 
     buttons() {
         const buttons = [];
-        for (const captor of this.props.captors) { // TODO add class 'active' when onClick
-            buttons.push(
-                <div>
-                    <Link to={this.route(captor.name)}>
-                        <button class={styleButton.button} onClick={() => this.handleClick(captor)}>
-                            <h3>{captor.name}</h3>
-                        </button> 
-                    </Link>
-                </div>
-            );
+        if (this.props.captors) {
+            for (const captor of this.props.captors) { // TODO add class 'active' when onClick
+                const className = captor.id === this.state.pushedButton ? styleButton.buttonActive : styleButton.button;
+                buttons.push(
+                    <div>
+                        <Link to={this.route(captor.name)}>
+                            <button id={captor.id} class={className} onClick={() => this.handleClick(captor)}>
+                                <h3>{captor.name}</h3>
+                            </button>
+                        </Link>
+                    </div>
+                );
+            }
         }
         return buttons;
     }
@@ -59,7 +62,7 @@ export default class Button extends React.Component {
             </>
         );
     }
-    
+
 }
 
-export { Button };
+export default Button;
