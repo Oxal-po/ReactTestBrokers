@@ -7,18 +7,32 @@ class Captor extends React.Component {
 
 
     render() {
-        const type = this.props.captor.type ? this.props.captor.type : "";
+        let type = "";
+        let name = "basicName";
+        let values = [0];
+
+        if(this.props.captor){
+            if(typeof this.props.captor.type === "string"){
+                type = this.props.captor.type;
+            }
+            if(typeof this.props.captor.name === "string"){
+                name = this.props.captor.name;
+            }
+            if(typeof this.props.captor.values === "array"){
+                values = this.props.captor.values;
+            }
+        }
         return (
             <div>
-                <h2>{this.props.captor.name}</h2>
+                <h2>{name}</h2>
                 <h4><i> Valeur actuelle : </i></h4>
-                <h1>{this.affichage(this.props.captor.values[0], type)}</h1>
+                <h1>{this.affichage(values, type)}</h1>
 
                 <h4>Historique : </h4>
                 <div>
                     <table className={styleCaptors.table}>
                         <tbody key={uuid()}>
-                            {this.renderHistorique()}
+                            {this.renderHistorique(values, type)}
                         </tbody>
                     </table>
                 </div>
@@ -26,10 +40,9 @@ class Captor extends React.Component {
         );
     }
 
-    renderHistorique() {
-        if (this.props.captor.values.length !== 0) {
-            const type = this.props.captor.type;
-            return this.props.captor.values.map((value) => (
+    renderHistorique(values, type) {
+        if (values.length !== 0) {
+            return values.map((value) => (
                 <tr key={uuid()}>
                     <td key={uuid()}>
                         {this.affichage(value, type)}

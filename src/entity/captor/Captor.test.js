@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Captor from "./Captor";
 
-it ("render sans crash", function () {
+it ("render with captor", function () {
     const div = document.createElement("div");
     ReactDOM.render(<Captor captor={
         {
@@ -10,6 +10,23 @@ it ("render sans crash", function () {
             name: "Temperature Bureau N° 28",
             type: "TEMPERATURE",
             values: [1, 2, 3]
+        }
+    }></Captor>
+    , div)
+});
+
+it ("render without captor", function () {
+    const div = document.createElement("div");
+    ReactDOM.render(<Captor></Captor>
+    , div)
+});
+
+it ("render with bad captor", function () {
+    const div = document.createElement("div");
+    ReactDOM.render(<Captor captor={
+        {
+            palu: "",
+            values: "alo"
         }
     }></Captor>
     , div)
