@@ -3,10 +3,6 @@ import styleCaptors from './Captor.module.css'
 
 class Captor extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const type = this.props.captor.type;
         return (
