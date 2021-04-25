@@ -32,13 +32,13 @@ class Button extends React.Component {
             for (const captor of this.props.captors) { // TODO add class 'active' when onClick
                 const className = captor.id === this.state.pushedButton ? styleButton.buttonActive : styleButton.button;
                 buttons.push(
-                    <>
+                    <div key={uuid()}>
                         <Link to={this.route(captor.name)}>
-                            <button key={uuid()} id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
+                            <button id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
                                 <h3>{captor.name}</h3>
                             </button>
                         </Link>
-                    </>
+                    </div>
                 );
             }
         }
