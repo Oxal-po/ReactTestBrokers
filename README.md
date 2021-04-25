@@ -8,7 +8,8 @@
 
 |Nom|Prénom|login|email|
 |--|--|--|--|
-| ??? | ??? | ??? | ???@???.?? |
+| PLANCHON | Richard | pr172488 | pr172488@etu.univ-lehavre.fr |
+| M'HIRSI | Aziz | ma174899 | ma174899@etu.univ-lehavre.fr |
 
 ## Travail à réaliser
 

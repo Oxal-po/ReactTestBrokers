@@ -33,7 +33,7 @@ class Button extends React.Component {
                 buttons.push(
                     <div>
                         <Link to={this.route(captor.name)}>
-                            <button id={captor.id} class={className} onClick={() => this.handleClick(captor)}>
+                            <button id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
                                 <h3>{captor.name}</h3>
                             </button>
                         </Link>
