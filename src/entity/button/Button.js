@@ -1,6 +1,6 @@
 import React from "react";
 import Captor from "./../captor/Captor";
-import {Link, Route} from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import CGC from "../CssGridContainer.module.css";
 import styleButton from "./Button.module.css";
 import PropTypes from "prop-types";
@@ -27,16 +27,18 @@ export default class Button extends React.Component {
 
     buttons() {
         const buttons = [];
-        for (const captor of this.props.captors) { // TODO add class 'active' when onClick
-            buttons.push(
-                <div>
-                    <Link to={this.route(captor.name)}>
-                        <button class={styleButton.button} onClick={() => this.handleClick(captor)}>
-                            <h3>{captor.name}</h3>
-                        </button> 
-                    </Link>
-                </div>
-            );
+        if (this.props.captors) {
+            for (const captor of this.props.captors) { // TODO add class 'active' when onClick
+                buttons.push(
+                    <div>
+                        <Link to={this.route(captor.name)}>
+                            <button class={styleButton.button} onClick={() => this.handleClick(captor)}>
+                                <h3>{captor.name}</h3>
+                            </button>
+                        </Link>
+                    </div>
+                );
+            }
         }
         return buttons;
     }
@@ -59,7 +61,7 @@ export default class Button extends React.Component {
             </>
         );
     }
-    
+
 }
 
 export { Button };
