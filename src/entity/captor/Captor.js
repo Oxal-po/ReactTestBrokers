@@ -31,7 +31,7 @@ class Captor extends React.Component {
                 <h4>Historique : </h4>
                 <div>
                     <table className={styleCaptors.table}>
-                        <tbody key={uuid()}>
+                        <tbody>
                             {this.renderHistorique(values, type)}
                         </tbody>
                     </table>
@@ -44,15 +44,12 @@ class Captor extends React.Component {
         if (values.length !== 0) {
             return values.map((value) => (
                 <tr key={uuid()}>
-                    <td key={uuid()}>
+                    <td>
                         {this.affichage(value, type)}
                     </td>
                 </tr>
             ));
-        } else {
-            return null;
         }
-
     }
 
 
