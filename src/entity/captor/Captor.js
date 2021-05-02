@@ -1,6 +1,6 @@
 import React from 'react';
 import styleCaptors from './Captor.module.css'
-import { uuid } from "uuidv4"
+import { uuid } from "uuidv4";
 
 class Captor extends React.Component {
 
@@ -49,7 +49,7 @@ class Captor extends React.Component {
                     </td>
                 </tr>
             ));
-        }
+        } 
     }
 
 
