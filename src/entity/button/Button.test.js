@@ -61,26 +61,26 @@ describe('render sans crash', () => {
 
 describe('Handle Click', () => {
     it('Test click event', () => {
+        const capteur = {
+            id: "135716",
+            name: "Temperature Bureau N° 28",
+            type: "TEMPERATURE",
+            values: [1, 2, 3]
+        };
+
         act(() => {
-            ReactDOM.render(<BrowserRouter><Button captors = {
-                [{
-                    id: "135716",
-                    name: "Temperature Bureau N° 28",
-                    type: "TEMPERATURE",
-                    values: [1, 2, 3]
-                }]
-            }></Button></BrowserRouter>, container);
+            ReactDOM.render(<BrowserRouter><Button captors = {[capteur]}></Button></BrowserRouter>, container);
         });
 
         const button = container.querySelector('button');
         const label = container.querySelector('h3');
-        expect(label.textContent).toBe('Temperature Bureau N° 28');
+        expect(label.textContent).toBe(capteur.name);
 
         act(() => {
             button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
         });
         
 
-        // TODO: check if route changes and check captor element update
+        expect(document.documentURI).toBe( "http://localhost/" + encodeURIComponent(capteur.name));
       });
 });
