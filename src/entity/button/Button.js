@@ -1,41 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Captor from "./../captor/Captor";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useHistory } from "react-router-dom";
 import CGC from "../CssGridContainer.module.css";
 import styleButton from "./Button.module.css";
 import { uuid } from "uuidv4";
 
-class Button extends React.Component {
+const Button = props => {
 
-    constructor(props) {
-        super(props);
-        this.captors = this.props.captors;
-        this.state = {
-            captors: [],
-            captor: { values: [] },
-            pushedButton: 0
-        };
+    const history = useHistory();
+    const route = name => {
+        return "/".concat(name)
     }
 
+    const [captor, setCaptor] = useState({ values: [] });
 
-    handleClick(captor) {
-        this.setState({
-            captor: captor,
-            pushedButton: captor.id
-        });
-        this.url = this.route(captor.name);
+    const [pushedButton, setPushedButton] = useState(0);
+
+    const handleClick = captor => {
+        setCaptor(captor);
+        setPushedButton(captor.id);
+        history.push(route(captor.name));
     }
 
-    buttons() {
+    const buttons = () => {
         const buttons = [];
-        if (this.props.captors && Array.isArray(this.props.captors)) {
-            for (const captor of this.props.captors) { // TODO add class 'active' when onClick
-                const className = captor.id === this.state.pushedButton ? styleButton.buttonActive : styleButton.button;
+        if (props.captors && Array.isArray(props.captors)) {
+            for (const cap of props.captors) {
+                const className = cap.id === pushedButton ? styleButton.buttonActive : styleButton.button;
                 buttons.push(
                     <div key={uuid()}>
-                        <Link to={this.route(captor.name)}>
-                            <button id={captor.id} className={className} onClick={() => this.handleClick(captor)}>
-                                <h3>{captor.name}</h3>
+                        <Link to={route(cap.name)}>
+                            <button id={cap.id} className={className} onClick={() => handleClick(cap)}>
+                                <h3>{cap.name}</h3>
                             </button>
                         </Link>
                     </div>
@@ -45,25 +41,18 @@ class Button extends React.Component {
         return buttons;
     }
 
-    route(name = "", debut = "/") {
-        return debut.concat(name);
-    }
-
-    render() {
-        return (
-            <>
-                <div className={CGC.side}>
-                    {this.buttons()}
-                </div>
-                <div className={CGC.main}>
-                    <Route path={this.route(this.state.captor.name)}>
-                        <Captor captor={this.state.captor} />
-                    </Route>
-                </div>
-            </>
-        );
-    }
-
+    return (
+        <>
+            <div className={CGC.side}>
+                {buttons()}
+            </div>
+            <div className={CGC.main}>
+                <Route path={route(captor.name)}>
+                    <Captor captor={captor} />
+                </Route>
+            </div>
+        </>
+    );
 }
 
 export default Button;
