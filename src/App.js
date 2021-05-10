@@ -34,13 +34,11 @@ class App extends React.Component {
   }
 
   urlListener(event) {
-    console.log(event);
     let url = event.target.value;
     this.setState({ url: url, error: "", captors: this.state.captors });
     try {
       const client = mqtt.connect(url);
       this.setUrl(url, client);
-      console.log(this.state.captors);
     } catch (error) {
       this.setState({ url: url, error: "url incorrect", captors: this.state.sensors });
     }
@@ -79,7 +77,6 @@ class App extends React.Component {
       captor.values = captor.values.slice(0, 10);
 
       getThis().setState({ url: getThis().state.url, alert: getThis().state.alert, captors: captors });
-      console.log(captors);
     });
   }
 }
