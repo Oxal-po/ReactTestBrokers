@@ -2,58 +2,22 @@ import React from 'react';
 import styleCaptors from './Captor.module.css'
 import { uuid } from "uuidv4";
 
-class Captor extends React.Component {
+const Captor = props => {
 
-
-
-    render() {
-        let type = "";
-        let name = "Veuillez Cliquez sur un bouton";
-        let values = [0];
-
-        if(this.props.captor){
-            if(typeof this.props.captor.type === "string"){
-                type = this.props.captor.type;
-            }
-            if(typeof this.props.captor.name === "string"){
-                name = this.props.captor.name;
-            }
-            if(Array.isArray(this.props.captor.values)){
-                values = this.props.captor.values;
-            }
-        }
-        return (
-            <div>
-                <h2>{name}</h2>
-                <h4><i> Valeur actuelle : </i></h4>
-                <h1>{this.affichage(values[0], type)}</h1>
-
-                <h4>Historique : </h4>
-                <div>
-                    <table className={styleCaptors.table}>
-                        <tbody>
-                            {this.renderHistorique(values, type)}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        );
-    }
-
-    renderHistorique(values, type) {
+    const renderHistorique = (values, type) => {
         if (values.length !== 0) {
             return values.map((value) => (
                 <tr key={uuid()}>
                     <td>
-                        {this.affichage(value, type)}
+                        {affichage(value, type)}
                     </td>
                 </tr>
             ));
-        } 
+        }
     }
 
 
-    affichage(value, type) {
+    const affichage = (value, type) => {
         switch (type) {
             case "TEMPERATURE":
                 return parseFloat(value).toFixed(2) + "°";
@@ -64,6 +28,38 @@ class Captor extends React.Component {
         }
     }
 
+    let type = "";
+    let name = "Veuillez Cliquez sur un bouton";
+    let values = [0];
+
+    if (props.captor) {
+        if (typeof props.captor.type === "string") {
+            type = props.captor.type;
+        }
+        if (typeof props.captor.name === "string") {
+            name = props.captor.name;
+        }
+        if (Array.isArray(props.captor.values)) {
+            values = props.captor.values;
+        }
+    }
+
+    return (
+        <div>
+            <h2>{name}</h2>
+            <h4><i> Valeur actuelle : </i></h4>
+            <h1>{affichage(values[0], type)}</h1>
+
+            <h4>Historique : </h4>
+            <div>
+                <table className={styleCaptors.table}>
+                    <tbody>
+                        {renderHistorique(values, type)}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 }
 
 export default Captor;
