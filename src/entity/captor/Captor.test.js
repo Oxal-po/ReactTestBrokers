@@ -15,6 +15,19 @@ it ("render with captor TEMPERATURE", function () {
     , div)
 });
 
+it ("render with captor no value", function () {
+    const div = document.createElement("div");
+    ReactDOM.render(<Captor captor={
+        {
+            id: "135716",
+            name: "Temperature Bureau N° 28",
+            type: "TEMPERATURE",
+            values: []
+        }
+    }></Captor>
+    , div)
+});
+
 it ("render with captor PERCENT", function () {
     const div = document.createElement("div");
     ReactDOM.render(<Captor captor={
